@@ -1,0 +1,154 @@
+Headless Browser (03:20)
+✔ Definition: Browsers without UI, also called Phantom (Ghost) drivers
+✔ Examples: PhantomJS, HtmlUnitDriver
+✔ Advantage: Faster performance since UI rendering is skipped
+✔ Disadvantage: Not suitable for SDLC testing phase (UI verification missing)
+
+Browser Drivers (08:00)
+✔ GeckoDriver → Firefox
+✔ ChromeDriver → Chrome
+✔ Other browsers have their respective drivers
+✔ Communication Flow:
+
+Java code → JSON format → Browser driver → Performs actions on browser
+
+Absolute Path Recap (11:00)
+✔ Example:
+
+String driverPath = "\\c:\\path_toDriver";
+✔ WebDriver & ChromeDriver Relationship:
+
+IS-A Relationship → ChromeDriver inherits WebDriver
+
+Wrong Practices (Avoid These) (17:00)
+❌ Hardcoding Paths → Store in config/properties file instead
+❌ Relying on System.out.println → Use logging frameworks instead
+
+Maven Dependencies for WebDriver (22:00)
+✔ Finding Selenium Dependencies → Downloads all required binaries
+✔ Stable vs Beta Versions → Defined in <version> tag
+✔ Driver Selection Process:
+
+Choose 32-bit/64-bit
+
+Select Stable/Beta
+
+Manually download OR use WebDriverManager
+
+WebDriverManager (Auto-Manages Drivers) (31:00)
+✔ How It Works:1️⃣ Checks installed browser version
+2️⃣ Matches the correct driver version
+3️⃣ Downloads driver if missing
+4️⃣ Exports required WebDriver environment variables
+
+✔ Code Usage:
+
+WebDriverManager.chromedriver().setup();
+
+✔ Where to Use?
+
+Use with proper annotations to avoid multiple instances
+
+Why WebDriverManager? (35:00)
+✔ Abstracts all setup steps → No manual driver handling required
+
+Manual Testing Login Process Example (38:00)
+✔ Website: SauceDemo
+✔ Test Steps:
+1️⃣ Enter Username
+2️⃣ Enter Password
+3️⃣ Submit
+4️⃣ Verify URL Change
+5️⃣ Check Landing Page Loaded
+
+✔ Elements Tested:
+
+TextBox
+
+Buttons
+
+Labels
+
+Images
+
+✔ Why Automation?
+❌ Manually testing 2000 times is inefficient
+✅ Automated test cases reduce time & effort
+
+For that let's see the steps.
+
+WebDriverManager.chromedriver().setup()
+WebDriver d = new ChromeDriver();
+//tell selenium with the help of object of WebDriver to open the link/homepage
+d.get("https://www.saucedemo.com/");
+//we tell selenium to find the element username
+//By is the class, xpath() is a static method
+WebElement uName= d.findElement(By.xpath("//*[@id="user-name"]");
+uName.sendText("somename");
+//we tell selenium to find the element password
+d.findElementbyXpath("").sendText("somepassword");
+//we tell selenium to find the element login button and click it
+WebElement loginButton = d.findElement(By.xpath("//*[@id="login-button"]"));
+loginButton.click();
+//there are 8 strategies to locate the element
+// and if we see some certain element in the opened webpage, we can tell that our testcase is passed. For example a tag containing Products
+WebElement prodLabel = d.findElement(By.xpath("//*[@id="header_container"]/div[2]/span"));
+System.out.println(prodLabel.isDisplayed());
+//For that we use Assert class's method, comparing expected output and obtained output.
+Assert.assertTrue(element.isDisplayed);
+
+------------------------------------------
+JUnit Annotations & WebDriver Setup
+Importing @Test Annotation (59:00)
+✔ Required Import:
+import org.junit.Test;
+
+Optimizing WebDriver Setup (01:27:00)
+❌ Wrong Practice:
+
+Using WebDriverManager.chromedriver().setup(); and new ChromeDriver(); inside every test
+
+✅ Best Practice:
+
+Create a global WebDriver object
+
+Use @Before annotation to initialize WebDriver only once
+
+Use @After annotation to quit WebDriver after tests
+
+Optimized Code Using JUnit Annotations
+
+import org.junit.Before;
+import org.junit.After;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class MyTest {
+
+    private WebDriver d = null; // Global WebDriver object
+
+    @Before
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        d = new ChromeDriver();
+    }
+
+    @Test
+    public void testSomething() {
+        d.get("https://www.google.com");
+        // Your test steps here...
+    }
+
+    @After
+    public void cleanUp() {
+        d.quit(); // Close the browser after every test case
+    }
+}
+Explanation of JUnit Annotations
+✔ @Before → Runs before every test case (sets up WebDriver)
+✔ @After → Runs after every test case (closes browser)
+✔ @Test → Marks a method as a test case
+
+This reduces redundant code, making test execution faster & efficient! 

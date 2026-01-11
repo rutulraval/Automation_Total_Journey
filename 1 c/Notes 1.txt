@@ -1,0 +1,102 @@
+Software Development Life Cycle (SDLC) Basics
+1️⃣ Requirement Analysis
+2️⃣ Design
+3️⃣ Implementation (Coding)
+4️⃣ Testing
+5️⃣ Deployment
+6️⃣ Maintenance
+
+Manual vs Automation Tester Duties
+🔹 Manual Tester:
+✔ Executes test cases manually.
+✔ Finds bugs, reports issues.
+✔ Works on exploratory and usability testing.
+
+🔹 Automation Tester:
+✔ Writes test scripts using tools like Selenium, Cypress, etc.
+✔ Automates regression testing.
+✔ Reduces manual effort for repetitive tasks.
+
+Unit Testing vs Integration Testing
+✅ Unit Testing → Done by developers, tests individual components.
+✅ Integration Testing → Done by testers, checks how components work together.
+
+Agile vs Waterfall (Brief)
+Aspect	Agile	Waterfall
+Approach	Iterative	Sequential
+Flexibility	High (adapts to change)	Low (fixed plan)
+Testing	Continuous	After development
+Risk Handling	Fast-fail, quick recovery	High risk if issues found late
+Agile Terms
+Story Points → Effort estimation for a task.
+
+Epic → Large feature broken into smaller tasks.
+
+User Story → A single requirement described in business terms.
+
+Example: COVID & Agile vs Waterfall Approach
+Waterfall → Fixed vaccine development plan, if a new variant appears, the process is slow to adjust.
+
+Agile → Adaptable, quickly modifies vaccine for new variants.
+
+Agile’s Fast-Fail & Adaptability
+✔ If a requirement changes, Agile allows quick modification.
+✔ Fail-fast → If a problem is detected early, the team adjusts immediately.
+
+Pushbacks from Testers
+✔ If first 10 out of 50 tests fail, testing might stop to fix issues before continuing.
+✔ Helps prevent wasting time on later tests if basic functionality is broken.
+
+Selenium Basics
+🔹 Selenium is a set of tools (not a single software).
+🔹 Written in Java but supports multiple languages.
+🔹 Type: Functional & Regression testing tool.
+🔹 Advantages:
+✔ Open-source, free, supports multiple programming languages.
+✔ Can integrate with TestNG, Cucumber, Maven, Jenkins.
+
+🔹 Disadvantages:
+❌ Only for web applications, no dedicated support.
+❌ For desktop apps → Use Sikuli, AutoIT.
+
+Web Applications vs API Testing
+Feature				Web Application				API
+====================================================================================================
+User Interface				Yes				No
+Testing Tools			Selenium, Cypress		Postman, RestAssured
+Tech Stack			HTML, CSS, JavaScript			JSON, XML
+
+
+Tech Stack for Testing
+Web Automation
+📌 HTML, CSS – Frontend basics
+📌 Maven – Build tool
+📌 GitHub – Version control
+📌 Cypress, Protractor – JS-based automation
+📌 TestNG, BDD, TDD – Test frameworks
+
+API Automation
+📌 XML/JSON – Data formats
+📌 Postman, SoapUI – API testing
+📌 RestAssured – Performance testing
+📌 ReadyAPI – Groovy-based API testing
+📌 Microservices – Small, independent services
+
+Mobile Automation
+📌 Appium – Similar to Selenium, for mobile apps
+
+Database Testing
+📌 SQL & NoSQL – For database validation
+
+Performance Testing
+📌 JMeter – Load testing (Limit: 200 users)
+📌 Locust (Python) – Scalable alternative
+
+CI/CD & Cloud Testing
+📌 CI/CD → Continuous Integration/Deployment
+📌 Jenkins, TeamCity, Bamboo → CI/CD tools
+📌 Cloud Testing → AWS, Azure
+📌 Docker → Containerization for consistent environments
+📌 Kubernetes → Scaling system instances
+📌 BrowserStack, LocalStack → Cloud-based testing platforms
+📌 Linux → Server-based automation

@@ -1,0 +1,40 @@
+Nexus Repository (09:00)
+✔ Understanding Intranet Repository:
+
+Each developer has a local repository on their computer.
+
+Companies maintain a shared repository for dependencies → Nexus Repository
+
+Maven & Target Folder (17:00)
+✔ Maven generates files in target folder
+✔ These files are copied to the .m2 repository as JAR files
+
+Selenium & JSON Communication (20:00)
+✔ Selenium Bindings → Works with multiple programming languages
+✔ Browser understands JSON (not Java, Python, etc.)
+✔ JSON = Lightweight, stores data in key-value pairs
+✔ XML = Bulky due to start & end tags
+
+Web Server & REST API (34:00)
+✔ Client = Code written by us
+✔ Web Server = Where the program runs
+✔ REST API → Converts client requests into JSON
+✔ Browser Drivers (ChromeDriver, GeckoDriver, etc.)
+✔ Drivers act as a security gate for browser automation
+
+Essential Selenium Components (47:00)
+1️⃣ Programming Language (Java, Python, etc.)
+2️⃣ Browser Driver (ChromeDriver, GeckoDriver, etc.)
+
+Finding Information (49:00)
+✔ Selenium website provides all necessary details
+
+HTTP Methods Overview (High-Level View)
+✔ GET → Retrieve data (e.g., open website)
+✔ POST → Send new data (e.g., submit signup form)
+✔ PUT → Update existing data
+✔ DELETE → Remove data
+
+Selenium IDE & Grid (57:00)
+✔ Selenium IDE → Record & playback tool
+✔ Selenium Grid → Distributes tasks to nodes via a hub

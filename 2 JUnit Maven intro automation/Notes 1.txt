@@ -1,0 +1,116 @@
+Automation execution through test scripts
+auto generation of result files
+auto generation of reports
+
+1. faster execution
+2. more accurate
+3. cost saving
+4. supports regression testing(TESTS major components testing core functionality)
+5. frequent executions
+6. supports nights out execution doesn't need physical presence
+
+can you automate everything ?
+
+
+✅ Selenium is a suite of tools to automate web browsers:
+--------------------------------------------
+
+Selenium IDE → Record & playback tool
+
+Selenium RC (Selenium 1.0) → Older version, now deprecated
+
+Selenium WebDriver → Advanced automation tool
+
+Selenium Grid → Distributes test cases across multiple machines
+
+✅ Features:
+
+Open-source
+
+Mainly used for functional & regression testing
+
+Supports multiple programming languages
+
+Works on different operating systems
+
+Supports multiple browsers
+
+functional testing is divided on basis of components or call flows: eg: sign up form
+
+Selenium Disadvantages
+❌ Supports only web applications
+❌ No dedicated support community
+❌ No built-in reporting (needs third-party plugins)
+❌ Limited support for image-based testing (Use Sikuli)
+
+Selenium Advantages
+✔ Open-source
+✔ Supports multiple OS & programming languages
+✔ Supports multiple browsers, including headless browsers (cross-browser testing)
+✔ Parallel execution support
+✔ Supports frameworks like TestNG, JUnit, NUnit
+
+
+55:00
+------------
+junit
+-----------------
+
+For any test class, there is no main method
+@Test annotation works as an entry point.
+
+
+
+01:11:00
+-------------
+How can we say our project is perfectly working ?
+✔ Compile Java files ✅
+✔ Write & pass unit test cases ✅
+✔ Write & pass integration test cases ✅
+✔ Create a JAR/WAR file for deployment ✅
+
+01:15:00
+---------------
+Client-Server Architecture
+------------------------------
+✔ When a browser opens a website → The page is fetched from a server
+✔ The server is a program written in Java
+✔ Containers create objects of the server → Access its methods & services
+
+This is called multi-tier architecture 🔄
+
+✔ Example:
+1️⃣ Front-end sends authentication request to server
+2️⃣ Server checks the database
+3️⃣ Server sends the appropriate page back to front-end
+
+✅ This represents MVC architecture (Model-View-Controller)
+
+
+01:20:00
+-------------
+
+Some extra support provided by some servers Transaction support they are called Application servers, opposite type of servers are called web-servers.
+Ex. of web-servers is Tomcat
+Ex. of application server like GlassFish,JBoss, weblogic.
+
+application server is a superset of webserver
+
+01:25:00
+----------
+Maven Build Life Cycle
+1️⃣ Compile 🔧
+2️⃣ Run test cases ✅
+3️⃣ Package 📦
+4️⃣ Deploy 🚀
+
+📌 If the last step runs successfully, all previous steps were completed!
+
+So, if last step is executed that means previous steps are already completed implicitly.
+
+
+
+
+
+
+
