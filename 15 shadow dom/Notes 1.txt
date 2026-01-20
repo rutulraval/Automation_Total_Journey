@@ -1,0 +1,128 @@
+HTML
+-----------
+- We use javascript to manipulate DOM at runtime.
+- We use h1, h2, h3 tags for our header tag for different size of fonts.
+- We use .some_class_name to define some attributes like font,font-size,font-color and then use attribute class="some_class_name" in our desired html tag to apply those look and feel values to the contents of that tag.
+- 3 types of stylesheets
+  inline(<input style="color:pink"> as an attribute to our tag), embedded(writing inside <style> tag), external(include some external file)
+
+	
+27:00
+==========
+-We can access elements in browser's console with document.___  here we can play and specify which element of DOM we want to access/change.
+-We can change values of tags with innerHTML
+  Like this : document.getElementsByTagName("h1")[0].innerHTML="Kundan Sharma's empire"
+
+
+33:00
+==========
+Why do we need shadow dom/iFrame ?
+==================================
+- Nowadays, industry follows component based architecture.
+- These components can be used as and when required like a plug & play device.
+- Such components should not interfere with other components. That is why we use shadow Dom.
+
+For example 2 teams are working on an HTMl file, they both think of same class name for the CSS.
+1 team sets font-color as red for that class , other team sets font-color as blue for that class.
+So, when they integrate their codes, the code for class file which appears last in CSS file will be considered final and applied to the HTML.
+
+This is called interference.
+
+That is why we need shadow dom/iFrames.[IMPORTANT INTERVIEW QUESTION]
+
+When we try to use selenium to locate shadow DOM components, it will throw NoSuchElementException.[IMPORTANT INTERVIEW QUESTION]
+To Access those Shadow DOM elements, we use class called JavascriptExecutor.
+
+
+
+01:18:00
+-------------
+[IMPORTANT INTERVIEW QUESTION]
+
+findElement() and findElements() methods are present in both,
+WebDriver interface and
+WebElement interface
+
+
+
+java.lang.ClassCastException: class org.openqa.selenium.remote.ShadowRoot cannot be cast to class org.openqa.selenium.WebElement (org.openqa.selenium.remote.ShadowRoot and org.openqa.selenium.WebElement are in unnamed module of loader 'app')
+
+What has changed since 2022, that can be the reason for this ClassCastException ?
+
+
+ChatGPT said:
+Great question — and yes, Selenium has changed quite a bit since 2022, especially around Shadow DOM support.
+
+Your error:
+
+java.lang.ClassCastException: class org.openqa.selenium.remote.ShadowRoot cannot be cast to class org.openqa.selenium.WebElement
+is happening because you're trying to cast a ShadowRoot to a WebElement, which are now distinct objects in Selenium 4.8+.
+
+✅ What's Changed (Since 2022)?
+🔸 Old Way (Pre-2022 / Selenium <4.8):
+To interact with elements inside a Shadow DOM, you often used JavaScript like:
+
+WebElement shadowHost = driver.findElement(By.cssSelector("#shadow-host"));
+WebElement shadowRoot = (WebElement) ((JavascriptExecutor) driver)
+    .executeScript("return arguments[0].shadowRoot", shadowHost);
+Here, you'd treat the returned shadowRoot as a WebElement. It worked, but it was a hack, since shadowRoot is not technically a DOM element.
+
+
+
+
+🔸 New Way (Selenium 4.8+):
+Selenium now has first-class support for Shadow DOM with a dedicated ShadowRoot object, which cannot be cast to WebElement.
+
+
+WebElement shadowHost = driver.findElement(By.cssSelector("#shadow-host"));
+SearchContext shadowRoot = shadowHost.getShadowRoot();  // returns ShadowRoot, not WebElement
+
+WebElement innerElement = shadowRoot.findElement(By.cssSelector("button"));
+So now:
+
+getShadowRoot() returns a ShadowRoot object (which implements SearchContext)
+
+You cannot cast it to WebElement
+
+Trying to do so will throw the ClassCastException you're seeing
+
+🔧 How to Fix Your Code
+Don't cast it. Use it as a SearchContext or directly as a ShadowRoot.
+
+
+
+✅ Correct way:
+
+WebElement shadowHost = driver.findElement(By.cssSelector("#shadow-host"));
+SearchContext shadowRoot = shadowHost.getShadowRoot(); // No cast
+
+WebElement elementInsideShadow = shadowRoot.findElement(By.cssSelector("input"));
+
+
+📦 Bonus Tip: Selenium Dependencies
+Make sure you're using at least Selenium 4.8+ for this official support. If you're seeing this issue but expecting the old behavior, it's likely your project recently upgraded and didn't update Shadow DOM handling accordingly.
+
+=================
+Don't cast ShadowRoot to WebElement — they’re different types now.
+
+Use shadowHost.getShadowRoot().findElement(...) instead.
+
+Selenium added native Shadow DOM support, so manual JavaScript hacks are now deprecated.
+
+Want help refactoring your current Shadow DOM interaction code? Drop it here and I’ll update it for you.
+
+
+
+
+
+01:42:00
+-------------
+[IMPORTANT INTERVIEW QUESTION]
+WebDriver d = new ChromeDriver();
+       and
+ChromeDriver c = new ChromeDriver();
+
+Which one will you use and why ?
+
+
+Answer: Both are correct, but 1st approach is better, because it uses Programming to interface Approach, which makes our application loosely coupled, and it is a more efficient method of coding/programming.

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+</head>
+<body>
+<script>
+function validate(){
+	if(document.getElementById("userName").value=="") alert("User name is mandatory")
+
+	if(document.getElementById("passWord").value=="") alert("Password is mandatory")
+
+}
+</script>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form>
+      <input type="text" id="userName" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" id="passWord" name="password" required>
+      <button type="submit" onclick="validate()">Login</button>
+    </form>
+  </div>
+
+</body>
+</html>

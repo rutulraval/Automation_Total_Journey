@@ -1,0 +1,90 @@
+24:00
+----------
+[Important interview question]
+==============================
+From assignment of Video 14(Screenshot 8), to take it further at advanced level, populate title and ID of every link opened in a structured way.
+
+- For that we can use Map consisting Entries of Key-value pairs.
+
+
+30:00
+-----------
+[Important interview question]
+How do you iterate over a map ?
+
+32:00
+----------
+Why do we use iFrame (Inline Frame)?
+- same reason as shadowDom
+- To separate components from interfering with each other.
+- It embeds different kinds of media, images, videos and advertisements on the main web-page.
+- Risk of cross-site scripting. Because it is hosted at external site.
+- Trusting procedure should be completed.
+
+Syntax
+<iFrame src="url"></iFrame>
+
+
+These iFrame elements can't be located using usual selenium techniques.
+
+Frames are the HTML tags that divide the browser window into multiple parts(vertical/horizontal)
+<frameset> is usually parent tag containing multiple <frame> tags
+
+
+<iFrame> can be placed inside <body> tag.
+
+
+41:00
+--------
+iFrame and Selenium
+========================
+
+We can use By.tagName to find elements under <iFrame>.
+
+
+For that we must first switch to iFrame.
+Then we can start locating it.
+
+All the iFrames on any webpage/html will have index starting from 0.
+
+A good approach to locate any element under <iFrame> is to first get the number of <iFrame> available on the HTML page.
+For that we must use findElementS method which returns the list of webelements. We count the size of that list to determine how many iFrame elements are there on the page.
+
+And as we know, index for iFrame starts with 0, we can go to desired iFrame tag based on that index.(57:00)
+
+With switchTo.frame() method we can switch to our desired iFrame
+driver.switchTo.frame(ID)
+driver.switchTo.frame(name)
+driver.switchTo.frame(WebElement)
+
+Then we can use our normal locating methods to locate elements under that <iFrame>
+
+
+
+Nested iFrames 01:15:00
+--------------------------
+- Any iFrame can have multiple child iFrame elements
+- Content on Base page is called Default Content
+
+Switching back to parent-frame 01:29:00
+-------------------------------
+- driver.switchTo().parentFrame()
+
+
+
+switching to the defaultContent(base page) 01:31:00
+==========================================
+
+- driver.switchTo().defaultContent()
+
+
+
+
+
+
+
+
+
+
+
+

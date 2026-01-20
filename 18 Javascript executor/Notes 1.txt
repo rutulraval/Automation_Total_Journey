@@ -1,0 +1,135 @@
+05:00
+Similar to JRE for Java, Browser is required for JavaScript
+
+All Selenium code interacts with browser, and behind the scenes uses JavaScript
+
+If Selenium fails (e.g., in case of shadow DOM or iFrames), we can use JavaScriptExecutor
+
+12:00
+Java vs JavaScript
+
+Java: Compiled, statically typed
+
+JavaScript: Interpreted, dynamically typed
+
+var x = 10; // type inferred as number
+
+
+
+13:00
+HTML Pre-defined Events (e.g., onclick)
+
+<button type="button" onclick="validate()">Login</button>
+Triggers validate() when button clicked
+
+Another example:
+
+Function triggered when something is entered into a text box (e.g., validation)
+
+
+
+
+19:00
+Working in Browser Console using document object
+
+Access HTML via: document
+
+Get value of input:
+
+document.getElementsByTagName("input")[0].value;
+
+Set value:
+
+document.getElementsByTagName("input")[0].value = "Rutul";
+
+
+Compare:
+
+document.getElementsByTagName("input")[0].value == "Kundan";
+28:00
+Any program with public static void main() → Client Side
+Server programs (Servlets) run on the backend
+
+
+
+35:00
+Using JavaScriptExecutor to set values in DOM elements
+
+JavascriptExecutor jse = (JavascriptExecutor) driver;
+jse.executeScript("document.getElementById('ID_HERE').value='YourValue'");
+
+
+40:00
+Homework Example using JSExecutor:
+
+Open google.com
+
+Handle Cookies popup
+
+Type into search box
+
+Click Search
+
+
+
+
+41:00
+Flash/highlight an element with JSExecutor
+
+🔧 Utility Class with:
+
+public static void flash(WebElement element, WebDriver driver) {
+    String bgColor = element.getCssValue("backgroundColor");
+    for(int i = 0; i < 501; i++) {
+        changeColor("#377389", element, driver);
+        changeColor(bgColor, element, driver);
+    }
+}
+private static void changeColor(String color, WebElement element, WebDriver driver) {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].style.backgroundColor='" + color + "'", element);
+    try { Thread.sleep(200); } catch (InterruptedException e) {}
+}
+
+
+
+01:06:00
+TakesScreenshot Interface
+
+File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+String screenshotBase64 = ((TakesScreenshot) element).getScreenshotAs(OutputType.BASE64);
+
+
+📌 Captures:
+
+Entire page
+
+Visible portion
+
+Specific WebElement (W3C compatible)
+
+
+01:27:00
+Every WebDriver action has an equivalent JavaScript version
+
+Selenium (Java)				JavaScript Equivalent
+driver.getTitle()		          document.title
+driver.getCurrentUrl()		          document.URL
+
+
+01:35:00
+Perform Click using JavaScriptExecutor:
+
+
+jse.executeScript("arguments[0].click()", elementToClick);
+
+
+01:49:00
+Scroll into view:
+
+jse.executeScript("arguments[0].scrollIntoView(true)", elementToScrollTo);
+
+
+Scroll to bottom of the page:
+
+jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");

@@ -1,0 +1,338 @@
+
+
+/* Add borders on multiple sides */
+.box1 {
+  border-right: 5px solid red;
+  border-left: 5px solid red;
+  border-top: 5px solid red;
+  border-bottom: 5px solid red;
+}
+/* Shorthand (top right bottom left) */
+p {
+  margin: 5px 10px 5px 10px;
+}
+h1 {
+  color: red;
+  background-color: yellow;
+}
+h2 {
+  color: blue;
+  background-color: #872;
+}
+
+body {
+	font: normal 16px Arial, Helvetica, sans-serif;
+	line-height: 1.6em;
+	margin: 50;
+}
+
+
+/* Targeting the class .box1 */
+.box1 {
+  background-color: #333; /* dark gray */
+  padding: 20px;       /*padding all sides*/
+  margin: 20px;        /* Margin on all sides */
+}
+
+/* Target h1 inside .box1 */
+.box1 h1 {
+  font-family: 'Homa', sans-serif; /* Change font family */
+  font-weight: 800;                /* Make text bold */
+  font-style: italic;              /* Make text italic */
+  text-decoration: underline;      /* Underline the text */
+  text-transform: uppercase;       /* Convert text to uppercase */
+  letter-spacing: 0.2em;           /* Add space between letters */
+  word-spacing: 1em;               /* Add space between words */
+}
+
+/* Style for the second box */
+.box2 {
+  border: 3px dotted lightgray;  /* Add a dotted border */
+  padding: 20px;                 /* Add padding inside the box */
+  margin: 20px 0 0 0;            /* Add margin on top and remove left and right margin */
+}
+
+
+
+/* Style for the div with class 'categories' */
+.categories {
+  border: 1px solid lightgray;    /* Add a light gray border */
+  padding: 10px;                   /* Add padding inside the div */
+  border-radius: 15px;             /* Add rounded corners */
+}
+
+/* Center the heading inside categories */
+.categories h2 {
+  text-align: center;  /* Align the text to the center */
+}
+/* Style for the unordered list inside categories */
+.categories ul {
+  padding: 0;                   /* Remove padding from the ul */
+  list-style: none;             /* Remove default bullets */
+}
+
+/* Style for list items */
+.categories li {
+  margin: 5px 0;                /* Add some margin between each list item */
+}
+
+.categories a {
+  text-decoration: none;        /* Remove underline from links */
+  color: inherit;               /* Use inherited text color */
+}
+
+/* Style for links inside the categories */
+.categories a {
+  color: #333;                /* Set the text color to dark gray */
+  font-weight: bold;          /* Make the text bold */
+  text-decoration: none;      /* Remove the underline */
+  display: inline-block;      /* Make the link block level */
+  padding: 5px 10px;          /* Add some padding inside the link */
+}
+
+/* Change color when the link is hovered */
+.categories a:hover {
+  color: #007bff;             /* Change text color on hover */
+}
+
+/* Change color when the link is visited */
+.categories a:visited {
+  color: orange;             /* Purple color for visited links */
+}
+
+/* Style for the footer */
+.footer {
+  background-color: #333;       /* Dark background for footer */
+  color: white;                 /* White text */
+  text-align: center;           /* Center align text */
+  padding: 20px;                /* Add padding inside the footer */
+  position: fixed;              /* Fix the footer at the bottom */
+  bottom: 0;                    /* Align it to the bottom */
+  width: 100%;                  /* Make the footer full width */
+}
+
+/* Global link styling */
+a {
+  text-decoration: none;
+  color: green;
+}
+
+a:hover {
+  color: red;
+}
+
+a:active {
+  color: green;
+}
+
+a:visited {
+  color: black; /* Overriding earlier yellow example */
+}
+
+.categories li {
+  padding-bottom: 6px;
+  border-bottom: 1px dotted #333;
+}
+.button {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: red;
+  color: white;
+}
+
+.my-form {
+  padding: 20px;
+}
+
+.my-form .form-group {
+  padding-bottom: 15px;
+}
+
+.my-form label {
+  display: block;
+}
+
+.my-form input[type="text"],
+.my-form textarea {
+  padding: 8px;
+  width: 100%;
+}
+
+/* Container for layout */
+.container {
+  width: 80%;           /* Was 500px before — now responsive */
+  margin: 0 auto;       /* Horizontally centers the container */
+}
+
+/* Float block */
+.block {
+  float: left;
+  width: 33.3%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Clear floats */
+.clr {
+  clear: both;
+}
+
+/* Main and Sidebar */
+#main-block {
+  float: left;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+#sidebar {
+  float: right;
+  width: 30%;
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Positioning example */
+.p-box {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  border: 1px solid black;
+  margin-top: 40px;
+  background-image: url('../images/bg-image.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.p-box h1 {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
+
+.p-box h2 {
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+}
+
+/* Fixed button */
+.fix-me {
+  position: fixed;
+  top: 400px;
+}
+
+/* Pseudo classes */
+.my-list li:first-child {
+  background: red;
+}
+
+.my-list li:last-child {
+  background: blue;
+}
+
+.my-list li:nth-child(5) {
+  background: yellow;
+}
+
+.my-list li:nth-child(even) {
+  background: #ddd;
+}
+
+
+@media (max-width: 600px) {
+  #main-content,
+  #sidebar {
+    float: none;
+    width: 100%;
+  }
+}
+#main-footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+#main-content {
+  float: left;
+  width: 70%;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+#sidebar {
+  float: right;
+  width: 30%;
+  background: #333;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#showcase {
+  background-image: url('../images/showcase.jpg');
+  background-position: center right;
+  min-height: 300px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#showcase h1 {
+  color: white;
+  font-size: 50px;
+  line-height: 1.6em;
+  padding-top: 30px;
+}
+#navbar {
+  background: #333;
+  color: white;
+}
+
+#navbar ul {
+  padding: 0;
+  list-style: none;
+}
+
+#navbar li {
+  display: inline;
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  font-size: 18px;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+#main-header {
+  background: coral;
+  color: white;
+  padding: 20px 0;
+}
+
+
+
+

@@ -1,0 +1,60 @@
+📌 00:00 - Apart from windows (OS) based alerts, Selenium can handle all browser-based alerts
+🧠 Types of Alerts:
+Simple Alert: Info-only → alert.accept()
+
+Prompt Alert: Asks for input → alert.sendKeys() + alert.accept()
+
+Confirmation Alert: Needs confirmation → alert.accept() or alert.dismiss()
+
+🧪 02:00 - Methods used for handling alerts
+
+Alert alert = driver.switchTo().alert();
+alert.accept();
+alert.dismiss();
+alert.getText();
+alert.sendKeys("hello");
+❌ No click() needed. Just switching to alert and invoking the method works.
+
+✔️ 04:00 - Finalize Test with Assertions
+
+Assert.assertEquals("Please enter a valid user name", alert.getText());
+
+
+🗨️ 33:00 - Modal Dialog Box (Important Interview Question)
+Modal Dialog blocks interaction with the main page until handled.
+
+Non-modal allows background interaction.
+
+Modal is commonly seen as an annoying popup requiring user action.
+
+
+
+🛠️ 01:24:00 - Selenium can’t handle Windows/native popups
+📌 Tools used instead:
+
+AutoIT
+
+Sikuli
+
+Java Robot Class
+
+
+
+📁 01:27:00 - Uploading Files with Selenium
+If you can inspect the file input button:
+
+
+driver.findElement(By.id("uploadFile")).sendKeys("C:\\Users\\you\\file.png");
+No need to interact with OS pop-up window.
+
+Directly uploads the file via sendKeys().
+
+
+
+🔐 01:31:00 - Authentication pop-up handling (username/password prompt)
+💡 Trick: Pass the credentials within the URL itself
+
+
+driver.get("http://username:password@URL");
+🔗 Try:
+https://the-internet.herokuapp.com/basic_auth
