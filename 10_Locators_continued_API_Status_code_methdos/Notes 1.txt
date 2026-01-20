@@ -1,0 +1,125 @@
+Important WebDriver and HTTP Interview Questions & Concepts
+1️⃣ WebDriver Hierarchy (Interview Question)
+✅ WebDriver is an Interface
+✅ It is implemented by RemoteWebDriver
+✅ RemoteWebDriver is extended by browser-specific classes like ChromeDriver, FirefoxDriver
+
+Class Diagram:
+
+
+WebDriver (Interface)
+     |
+     |---> RemoteWebDriver (Implements WebDriver)
+                |
+                |---> ChromeDriver (Extends RemoteWebDriver)
+                |---> FirefoxDriver (Extends RemoteWebDriver)
+                |---> EdgeDriver (Extends RemoteWebDriver)
+💡 Why is this important?
+
+Understanding this hierarchy helps in writing flexible and maintainable Selenium automation code.
+
+We can use WebDriver driver = new ChromeDriver(); instead of ChromeDriver driver = new ChromeDriver(); to keep the code browser-independent.
+
+2️⃣ How to Find Broken Links on a Web Page? (Interview Question)
+✅ Every <a> tag contains an href attribute
+✅ Broken links usually have href="#" or return an error status
+✅ To detect them:
+
+Find all <a> tags using findElements(By.tagName("a"))
+
+Extract href values
+
+Send a GET request to check response code
+
+If response code is 4xx or 5xx, mark it as broken
+
+✅ Example Code:
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+
+public class BrokenLinksChecker {
+    public static void main(String[] args) {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://example.com");
+
+        // Find all anchor tags
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+
+        for (WebElement link : links) {
+            String url = link.getAttribute("href");
+            if (url == null || url.isEmpty() || url.equals("#")) {
+                System.out.println("Broken Link: " + url);
+                continue;
+            }
+
+            try {
+                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.setRequestMethod("GET");
+                connection.connect();
+                int responseCode = connection.getResponseCode();
+
+                if (responseCode >= 400) {
+                    System.out.println("Broken Link: " + url + " (Response Code: " + responseCode + ")");
+                }
+            } catch (Exception e) {
+                System.out.println("Exception checking link: " + url);
+            }
+        }
+
+        driver.quit();
+    }
+}
+3️⃣ How Do We Know if a Website is Working Properly?
+✅ By checking the HTTP response status codes
+
+Status Code Range	Meaning
+2xx (200, 201, etc.)	✅ Success
+3xx (301, 302, etc.)	🔄 Redirect
+4xx (401, 403, 404, etc.)	❌ Client Error (Wrong Request)
+5xx (500, 502, etc.)	❌ Server Error (Website Down)
+💡 Example:
+
+200 OK: Page is working fine ✅
+
+404 Not Found: Link is broken ❌
+
+500 Internal Server Error: Issue on the server-side ❌
+
+✅ To check, send a GET request and analyze the response code.
+
+4️⃣ GET vs POST Request
+✅ GET request is IDEMPOTENT
+
+Definition: Calling a GET request multiple times does NOT change the server state.
+
+Example: Visiting a webpage (GET /homepage) doesn’t modify any data.
+
+✅ POST request is NOT IDEMPOTENT
+
+Definition: Calling a POST request multiple times creates multiple new records on the server.
+
+Example: Submitting a form (POST /registerUser) creates a new user every time.
+
+💡 Example Difference:
+
+
+// GET request (Idempotent)
+HttpURLConnection connection = (HttpURLConnection) new URL("https://api.example.com/users").openConnection();
+connection.setRequestMethod("GET");
+
+// POST request (Not Idempotent)
+HttpURLConnection connection = (HttpURLConnection) new URL("https://api.example.com/register").openConnection();
+connection.setRequestMethod("POST");
+connection.setDoOutput(true); // Sending data to the server
+🔑 Key Takeaways
+✅ WebDriver is an Interface, implemented by RemoteWebDriver and extended by ChromeDriver, etc.
+✅ Broken links can be found by checking <a> tags with href="#" or HTTP status 4xx/5xx.
+✅ Website status is checked via HTTP response codes (200 = OK, 404 = Not Found, 500 = Server Error).
+✅ GET requests are idempotent (no side effects), but POST requests create new records.

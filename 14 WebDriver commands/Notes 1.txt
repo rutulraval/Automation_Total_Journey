@@ -1,0 +1,74 @@
+23:00
+-------
+Brief concept of shadow-root in HTML
+------------------------------------
+- You can't locate it directly using xpath.
+- For that we need to use javascript.
+
+26:00
+------------------------
+Webdriver commands
+========================
+
+get commands:-
+==============
+get(): used to open URL(IMPORTANT INTERVIEW QUESTION: Basically it uses POST REQUEST internally)
+getTitle(): returns title of the page
+getCurrentUrl(): returns current url of the page
+getPageSource(): returns HTML code in String format
+
+36:00
+getWindowHandle(): If we have multiple tabs open due to some click operation opening a window with such code:
+<a href:"https://www.w3schools.com" target="_blank">Visit w3</a>
+
+here target="_blank" this code will open a new tab.
+
+So, from such newly opened tab, to get back to our original window.
+This method will return a unique identifier 
+
+getWindowHandles(): This method will return a SET Unique references of all opened windows (no insertion order maintained, because it is a set)
+
+
+
+47:00
+Browser commands:-
+===============
+close(): 
+quit()
+
+
+59:00
+===========
+Assignment to open all links, then go to 2nd tab with particular title
+
+
+01:28:00
+Navigation Commands:
+===========================
+navigate.to(): It maintains the history. So, we can use forward() and back() to navigate as well.
+navigate.forward()
+navigate.back()
+navigate.refresh(): reloads the page
+
+
+Conditional Commands:
+=====================
+isDisplayed
+isEnabled
+isSelected
+
+
+Difference between get() and navigate()    [important interview question]
+=============================================
+-driver.get() : It's used to go to the particular website , But it doesn't maintain the browser History and cookies so , we can't use forward and backward button , if we click on that , page will not get schedule
+-driver.get() is used to navigate particular URL(website) and wait till page load.
+
+-driver.navigate() : it's used to go to the particular website , but it maintains the browser history and cookies, so we can use forward and backward button to navigate between the pages during the coding of Testcase
+-driver.navigate() is used to navigate to particular URL and does not wait to page load. It maintains browser history or cookies to navigate back or forward.
+
+
+01:41:00   [important interview question]
+============================================
+Can we declare an interface inside another interface ?
+- YES, 
+   interface WebDriver contains another iterface Options inside it.

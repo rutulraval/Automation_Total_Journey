@@ -1,0 +1,29 @@
+3:00
+---------
+- To locate an element for which we don't know the exact xpath, we can locate a parent/sibling element and then find our desired element. This concept can be understood as axes locators.
+
+- Xpath axes are those axes that are used to search for multiple nodes in the xml from the current node context.
+- These methods are used to locate elements that are not identified with the help of ID, name, class etc.
+
+20:00
+----------
+Understand the DOM Structure in terms of Child-parent-ancestors-siblings-descendents with respect to a current node.
+
+Child: Traverse all child elements //*[attribute='value']/child::tagname
+
+Parent: Traverse parent element //*[attribute='value']/parent::tagname
+
+Following: Traverse all the elements that come after the current tag //*[attribute='value']/following::tagname
+
+Preceding: Traverse all the elements that come before the current tag //*[attribute='value']/preceding::tagname
+
+Following-sibling: Traverse from the current element to next sibling tag //currentTag[attribute='value']/following-sibling::sibling-tagname[@attribute='value']
+
+Preceding-sibling: Traverse from the current element to previous sibling tag //currentTag[attribute='value']/previous-sibling::sibling-tagname[@attribute='value']
+
+Ancestor: Traverse all the ancestor(parent-grandparent) elements of the current tag //*[attribute='value']/ancestor::tagname
+
+Descendent: Traverse all the descendent(child-grandchild) elements of the current tag //*[attribute='value']/ancestor::tagname
+
+
+

@@ -1,0 +1,194 @@
+HTML Basics - Tags, Attributes & Identifying Elements
+1️⃣ HTML Tags & Their Types
+HTML tags define the structure of a webpage. Tags are enclosed in angle brackets < >.
+
+✅ Types of HTML Tags:
+
+Type					Description			Example
+===========================================================================================================
+Structural Tags			Define document structure	<html>, <head>, <body>
+Text Formatting Tags		Style or format text		<h1> to <h6>, <p>, <b>, <i>, <u>
+List Tags			Create ordered/unordered lists	<ul>, <ol>, <li>
+Table Tags			Create tables			<table>, <tr>, <td>, <th>
+Form Tags			Collect user input		<form>, <input>, <textarea>, <button>
+Link & Media Tags		Add links and multimedia	<a>, <img>, <audio>, <video>
+
+2️⃣ HTML Tag Attributes
+Attributes provide additional information about an element.
+
+Syntax:
+<tagname attribute="value">Content</tagname>
+
+✅ Common Attributes:
+
+Attribute			Purpose					Example
+===========================================================================================================
+id			Uniquely identifies an element		<p id="para1">This is a paragraph</p>
+class			Groups multiple elements		<div class="box">Content</div>
+name			Used in forms to identify input fields	<input type="text" name="username">
+placeholder		Displays hint text in form fields	<input type="text" placeholder="Enter name">
+maxlength		Limits input length			<input type="text" maxlength="10">
+minlength		Sets minimum input length		<input type="password" minlength="6">
+
+
+3️⃣ Example: maxlength & minlength
+<form>
+    <label for="username">Username (3-10 characters):</label>
+    <input type="text" id="username" name="username" minlength="3" maxlength="10">
+</form>
+💡 This input field will only accept between 3 and 10 characters.
+
+4️⃣ textarea Tag for Multi-line Input
+Unlike <input>, the <textarea> tag is used for large text inputs.
+
+✅ Example:
+<textarea rows="4" cols="50" placeholder="Enter your message here..."></textarea>
+💡 rows and cols define height and width of the textarea.
+
+5️⃣ Importance of id Attribute for Unique Identification
+🔹 id uniquely identifies an HTML element. It helps in JavaScript, CSS, and automation testing (like Selenium).
+
+✅ Example:
+<p id="intro">This is an introduction paragraph.</p>
+
+
+📌 In CSS or JavaScript, we can directly select this element using:
+
+#intro { color: blue; }
+
+document.getElementById("intro").innerHTML = "Updated text!";
+
+
+6️⃣ Without id, Locating Elements is Difficult & Ambiguous
+🔴 Problem: Identifying a button without id
+
+<button>Click Me</button>
+<button>Click Me</button>
+👆 Here, both buttons have the same text. How do we select one specifically?
+
+📌 Solution: Using id
+
+<button id="btn1">Click Me</button>
+<button id="btn2">Click Me</button>
+Now we can easily select btn1 or btn2 using:
+
+
+document.getElementById("btn1").style.backgroundColor = "red";
+💡 Without an id, the selection can be ambiguous, leading to unintended results!
+
+🔑 Summary & Key Takeaways
+✅ HTML tags define webpage structure
+✅ Attributes enhance elements (id, class, maxlength, etc.)
+✅ id ensures unique identification
+✅ textarea is used for multi-line input
+✅ Without id, selecting elements can be difficult and ambiguous
+
+🔥 Remember: Always use id for elements that need unique identification, especially in JavaScript & automation testing! 🚀
+
+
+
+
+
+
+Absolute Path vs Relative Path in HTML (XPath)
+==========================================================================
+1️⃣ Absolute XPath
+It defines the complete path from the root element (<html>) to the target element.
+
+Begins with a single / (forward slash).
+
+Very fragile: If any element in the hierarchy changes, the path breaks.
+
+✅ Example:
+
+/html/body/div[1]/section[2]/div/h2
+💡 If any <div> or <section> structure changes, this path becomes invalid.
+
+2️⃣ Relative XPath
+Begins with // (double forward slash).
+
+It searches the entire DOM for a matching element instead of starting from the root.
+
+More flexible: Changes in the page structure won’t break it as easily.
+
+✅ Syntax:
+
+//tagname[@attribute="value"]
+
+✅ Example:
+
+//h2[@class="title"]
+💡 Finds any <h2> element with class="title", no matter where it is in the DOM.
+
+
+
+3️⃣ Best Practices for Writing Relative XPath
+====================================================================================
+1️⃣ Always use unique attributes (id, name, data-* attributes).
+
+//input[@id="username"]
+2️⃣ If no unique attribute is available, use contains() to match partial values.
+
+//button[contains(text(), 'Submit')]
+3️⃣ If multiple elements match, use indexing ([1] for the first match).
+
+(//input[@type="text"])[1]
+4️⃣ Use hierarchical relations (parent-child relationships) for more specific results.
+
+//div[@class="container"]/input[@name="email"]
+
+
+🔴 Why Absolute XPath is Risky?
+Consider this HTML:
+
+<html>
+  <body>
+    <div>
+      <h2>Heading</h2>
+    </div>
+  </body>
+</html>
+
+
+Absolute XPath:
+
+/html/body/div/h2
+👆 If a new <div> is added, this path breaks.
+
+Instead, use Relative XPath:
+
+//h2[text()="Heading"]
+👆 This is more stable and works even if the structure changes.
+
+🔑 Key Takeaways
+✅ Absolute XPath (/): Full path, very fragile
+✅ Relative XPath (//): More reliable, searches anywhere in the DOM
+✅ Best practice: Use unique attributes like id and name
+✅ Avoid absolute XPath in automation (Selenium, etc.) to prevent breakage 🚀
+
+
+
+
+
+
+IMPORTANT INTERVIEW QUESTION
+---------------------------------------
+What is a By class ? Where does it come from ? Can we change its methods' behaviour ?
+
+
+Package org.openqa.selenium
+Class By
+java.lang.Object
+
+org.openqa.selenium.By
+
+Direct Known Subclasses:
+By.ByClassName, By.ByCssSelector, By.ById, By.ByLinkText, By.ByName, By.ByPartialLinkText, By.ByTagName, By.ByXPath, ByAll, ByChained, ByIdOrName, RelativeLocator.RelativeBy
+public abstract class By
+extends Object
+
+Mechanism used to locate elements within a document. In order to create your own locating mechanisms, it is possible to subclass this class and override the protected methods as required, though it is expected that all subclasses rely on the basic finding mechanisms provided through static methods of this class:
+
+
+By class is abstract class, in javadocs it is told to us that we can override protected and public methods to change their functionalities,
+generally it is expected to not override them, but if we want we can.

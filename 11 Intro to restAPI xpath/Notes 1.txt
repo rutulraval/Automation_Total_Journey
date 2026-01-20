@@ -1,0 +1,116 @@
+Important HTTP Status Codes & Locator Strategies in Selenium
+1️⃣ HTTP Status Codes & Their Meanings
+📌 1xx - Informational
+These indicate the request is received and being processed.
+
+Example: 100 Continue (Server acknowledges request and will continue processing)
+
+📌 2xx - Success ✅
+Focus on these:
+
+200 OK → API request successfully completed, response body included.
+
+201 Created → Resource successfully created (e.g., user registered).
+
+202 Accepted → Request accepted but not yet processed (processing in background).
+
+📌 3xx - Redirection 🔄
+301 Moved Permanently → URL has changed permanently.
+
+302 Found → Temporary redirect.
+
+304 Not Modified → Cached version should be used, no new data.
+
+📌 4xx - Client Errors ❌
+400 Bad Request → Syntax error in request (e.g., sent JSON when XML is expected).
+
+401 Unauthorized → Authentication required.
+
+403 Forbidden → You don’t have permission.
+
+404 Not Found → Resource doesn’t exist (wrong URL).
+
+405 Method Not Allowed → Server allows only GET, but client sends POST.
+
+📌 5xx - Server Errors 🔥
+500 Internal Server Error → Problem on server-side (never a client issue).
+
+502 Bad Gateway → Invalid response from upstream server.
+
+503 Service Unavailable → Server is down or overloaded.
+
+2️⃣ Customized Locators in Selenium (CSS Selectors & XPath)
+✅ Why use customized locators?
+
+More flexible than basic locators like By.id or By.className.
+
+Useful when elements don’t have unique IDs.
+
+Avoids issues when class names are dynamic or change frequently.
+
+📌 CSS Selectors (More Efficient Than XPath)
+Type			CSS Selector Syntax				Example
+Tag + ID			tag#id					input#username
+Tag + Class		tag.className					button.submit-btn
+Tag + Attribute		tag[attribute=value]				input[name="email"]
+Tag + Class + Attribute	tag.class[attribute=value]			input.textbox[type="password"]
+
+💡 Important Notes:
+
+No spaces between tag and attribute (input[name=email] ✅, not input [name=email] ❌).
+
+Tag is optional (#username, .submit-btn, [name=email] also work).
+
+3️⃣ XPath in Selenium
+📌 What is XPath?
+XPath is used to locate elements in HTML or XML pages.
+
+📌 Types of XPath
+XPath Type			Description									Syntax Example
+Absolute XPath		Starts from root (/) and traverses the full DOM structure			/html/body/div[1]/table/tr/td[2]
+Relative XPath		Can locate elements anywhere in DOM (//), does not depend on full structure	//input[@name="email"]
+Wildcard XPath (*)	Used when tag is unknown or varies						//*[@id="login-button"]
+
+💡 Why is Absolute XPath Risky?
+
+If page structure changes, absolute XPath breaks.
+
+Relative XPath is more flexible.
+
+📌 Relative XPath Examples
+Use Case						XPath Syntax			Example
+Find by tag & attribute				//tag[@attribute="value"]	//input[@name="email"]
+Omit tag (find any element)			//*[@attribute="value"]		//*[@id="submit"]
+Contains partial text				//*[contains(text(),'Login')]	Find any element containing "Login"
+Find based on parent-child relationship		//div[@class="form"]/input	Find input inside a div
+
+4️⃣ Why is id Important? (Ambiguous Element Selection Issue)
+❌ Without ID - Hard to Locate Elements
+
+<input type="text" name="username">
+<input type="text" name="username">
+Both elements have the same attributes, making it difficult to distinguish.
+
+Using findElement(By.name("username")) may return the wrong one.
+
+✅ With ID - Easy Selection
+
+<input type="text" id="user1" name="username">
+<input type="text" id="user2" name="username">
+
+
+Now we can uniquely select:
+
+driver.findElement(By.id("user1")).sendKeys("testuser");
+
+5️⃣ XPath Helper Extensions for Chrome
+💡 To easily get XPath of elements, use these Chrome extensions:
+✅ SelectorsHub – More advanced & supports shadow DOM
+✅ ChroPath – Popular for testing & debugging XPath
+
+🔑 Key Takeaways
+✅ 200, 201, 202 are success codes, while 400, 401, 404 indicate client errors.
+✅ CSS Selectors (#id, .class, [attr=value]) are faster than XPath.
+✅ Relative XPath (//tag[@attr="value"]) is preferred over absolute XPath (/html/...).
+✅ Using id attribute makes locating elements much easier & prevents ambiguity.
+✅ Extensions like SelectorsHub & ChroPath help in finding XPath quickly.

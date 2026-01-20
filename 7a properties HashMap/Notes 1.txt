@@ -1,0 +1,99 @@
+📌 Why do we need a properties file?
+✅ Avoids hardcoding of environment-specific values (URLs, DB credentials, file paths, etc.).
+✅ Easier maintenance when configurations change frequently.
+✅ Improves security (e.g., storing credentials separately instead of in the code).
+✅ Supports internationalization (e.g., different language texts in UI apps).
+
+📌 Difference between HashMap and Properties
+Feature				HashMap<K, V>				Properties
+-----------------------------------------------------------------------------------------------------
+Key-Value Type			Both key & value are Objects		Both key & value are Strings
+Used for?			General-purpose key-value storage	Configuration storage
+Supports null keys?		Yes					No
+Can be serialized?		Yes					No
+
+📌 Reading from a properties file
+-----------------------------------------------------------------------------------------------------
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ReadPropertiesFile {
+    public static void main(String[] args) {
+        Properties p = new Properties();
+
+        try (FileInputStream input = new FileInputStream("config.properties")) {
+            p.load(input);
+            
+            // Reading values
+            String dbUrl = p.getProperty("database.url");
+            String username = p.getProperty("database.username");
+            String password = p.getProperty("database.password");
+
+            // Printing values
+            System.out.println("Database URL: " + dbUrl);
+            System.out.println("Username: " + username);
+            System.out.println("Password: " + password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+Example config.properties file:
+
+database.url=jdbc:mysql://localhost:3306/mydb
+database.username=admin
+database.password=secret123
+
+
+
+📌 Modifying and writing to a properties file
+-----------------------------------------------------------------------------------------------------
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class WritePropertiesFile {
+    public static void main(String[] args) {
+        Properties p = new Properties();
+
+        // Setting properties
+        p.setProperty("server.port", "8080");
+        p.setProperty("app.mode", "production");
+
+        try (FileOutputStream output = new FileOutputStream("config.properties")) {
+            p.store(output, "Updated server settings");
+            System.out.println("Properties file updated successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+IMPORTANT INTERVIEW QUESTION
+----------------------------------
+📌 Buffered Streams for Performance
+For large files, we use BufferedInputStream & BufferedOutputStream to improve performance.
+
+try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("config.properties"))) {
+    properties.load(bis);
+}
+
+
+try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("config.properties"))) {
+    properties.store(bos, "Updated properties");
+}
+
+
+
+📌 Key Takeaways
+✅ Use properties files to externalize configuration data.
+✅ Always place it in the root project directory (not inside src/ or test/).
+✅ Use getProperty() to read values.
+✅ Use setProperty() and store() to modify and write new values.
+✅ Use buffered streams for handling large property files efficiently.

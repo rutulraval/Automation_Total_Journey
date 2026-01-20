@@ -1,0 +1,155 @@
+Externalizing Hardcoded Values
+Move URLs, XPath locators, and other constants to a property file
+
+This makes the code flexible and easier to maintain
+
+Lombok Basics (04:00)
+------------------------------------------
+Why Lombok?
+✔ Reduces boilerplate code with annotations
+
+Common Lombok Annotations
+------------------------------------------
+Annotation			Purpose
+@ToString		Auto-generates toString() method
+@Setter / @Getter	Auto-generates setter & getter methods
+@AllArgsConstructor	Generates constructor with all fields
+@NoArgsConstructor	Generates constructor with no arguments
+@EqualsAndHashCode	Auto-generates equals() & hashCode()
+Adding Lombok to Project
+Install Lombok Plugin in IntelliJ (File → Settings → Plugins)
+
+Add Dependency in pom.xml
+
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.26</version>
+    <scope>provided</scope>
+</dependency>
+
+
+
+Boilerplate Code & Lombok (18:00)
+------------------------------------------
+In Java, simple tasks require class, main method, print statements
+
+Lombok removes repetitive boilerplate code
+
+Builder Pattern (@Builder Annotation) (20:00)
+✔ Use Case:
+
+If a class has 20 fields but we need a constructor for only 4 fields, we can't use @AllArgsConstructor
+
+Instead, we use @Builder
+
+✔ Example:
+
+
+@Data
+@Builder
+class Student {
+    private String name;
+    private int age;
+    private String course;
+}
+✔ Usage:
+
+Student student = Student.builder()
+    .name("John")
+    .age(25)
+    .course("Math")
+    .build();
+
+@RequiredArgsConstructor & @Autowired (26:00)
+✔ @RequiredArgsConstructor works well with @Autowired
+✔ Injects only final fields via constructor
+
+
+@RequiredArgsConstructor
+class StudentService {
+    private final StudentRepository studentRepo; // Auto-wired dependency
+}
+
+Logging Basics (30:00)
+------------------------------------------
+✔ Why do we log?
+
+Tracks important events & test results
+
+System.out.println() is slow (due to synchronized)
+
+Used for monitoring, debugging, auditing
+
+Logs stored in separate files
+
+✔ Logging Library: log4j
+📌 Add Log4j Dependency in pom.xml:
+
+
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>3.0.0-beta3</version>
+</dependency>
+
+Different Log Levels (40:00)
+------------------------------------------
+Level	Purpose
+TRACE	Logs every detail (very verbose)
+DEBUG	Logs debugging details
+INFO	Logs important events (default level)
+WARN	Logs warnings (not an error yet)
+ERROR	Logs serious failures
+FATAL	Logs critical failures
+
+✔ Setting Default Log Level in log4j.properties:
+------------------------------------------
+
+log4j.rootLogger=DEBUG, consoleAppender, fileAppender
+log4j.appender.file.File=C:\\logs\\app.log
+log4j.appender.file.MaxFileSize=10MB
+
+📌 Log Destination Options:
+
+Console: consoleAppender
+
+File: fileAppender
+
+Database: Custom DB Logger
+
+Key IMPORTANT Interview Question
+Q: If something goes wrong in Production, what’s the first thing to check?
+A: Check the log file first!
+
+Using log4j in Java (54:00)
+------------------------------------------
+✔ Initialize Logging Configuration (@BeforeClass)
+
+
+@BeforeClass
+public static void setupLogger() {
+    PropertyConfigurator.configure("log4j.properties");
+}
+✔ Logging in a Selenium Test Case
+
+
+@Test
+public void launchBrowser() {
+    logger.info("Launching browser...");
+    WebDriver d = new ChromeDriver();
+    d.get("https://www.cnn.com");
+}
+
+@After
+public void cleanUp() {
+    logger.info("Performing cleanup...");
+    d.quit();
+}
+
+Key Takeaways 🚀
+✅ Move hardcoded values to property files
+✅ Use Lombok to remove boilerplate code
+✅ Builder Pattern helps when only some fields need initialization
+✅ Logging is critical for debugging & monitoring
+✅ Check logs first when troubleshooting production issues

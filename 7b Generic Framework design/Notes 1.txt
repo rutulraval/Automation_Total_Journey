@@ -1,0 +1,56 @@
+WHAT IS THE RECOMMENDED LOG LEVEL?
+IMPORTANT INTERVIEW QUESTION
+======================================w
+- IN DEV ENVIRONMENT, DEBUG IS GOOD
+- IN PRODUCTION NOT TRACE OR DEBUG, CAN BE INFO LEVEL.
+
+
+SMALL IMPROVEMENTS to make our code generic
+-------------------------------------------
+- IF SOMETHING IS BEING USED FOR ALL TEST CASES THAT SHOULD BE DEFINED IN @BeforeClass or parent class to STOP REPEATING THE SAME CODE like a Logger
+- INSTANTIATION OF WEBBROWSER OBJECT CAN BE DEFINED IN @Before annotation as an instance entity.
+- PROPERTIES FILE SHOULD BE OBTAINED IN @BeforeClass annotation as a static entity.
+
+
+
+28:00
+--------
+To get a object from a .class file where we don't have actual code, we use
+Class c = Class.forName("Employee");
+
+Where Class is a class defined in java to get an object from any Class file.
+
+And with Method[] methods = c.getDeclaredMethods(); we can obtain an array of methods defined in that class.
+
+This concept is called using Reflection API.
+
+
+Using this API we can make our code more generic, for example we won't need to hard-code browser name for getting a driver object.
+
+
+44:00
+--------
+So, for utilizing reflection api, for getting a browser object we use another API, it is DriverManagerType library, it is Enum for browsers
+
+(Search selenium webdriver manager)
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+private static DriverManagerType browser = null;//This line can be defined as a generic line in parent class/@BeforeClass annotations
+
+and we initialize it via reading the properties file
+Properties p = new Properties();
+browser = DriverManagerType.valueOf(p.get("browser").toString());//where "browser" is key defined in properties file
+WebDriverManager.getInstance(browser).setup();//this line will setup the browser, it won't open it.
+
+
+And inside the test-case, we can write
+@Before
+public void setup(){
+Class<?> browserClass = Class.forName(browser.browserClass());
+webDriver = (WebDriver) browserClass.newInstance();
+}
+
+So, we get an object of the browser with Reflection API
+
+

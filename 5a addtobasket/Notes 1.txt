@@ -1,0 +1,56 @@
+Maven & JUnit in Testing
+Maven vs JUnit (10:00)
+✔ Maven → Dependency Management Tool (not used directly for testing)
+✔ JUnit → Testing Framework
+
+Uses Annotations like @Test, @Before, etc.
+
+Uses Assert Class with static methods like Assert.assertEquals()
+
+✅ Common Interview Question:
+
+Q: What do you use for testing?
+
+A: JUnit (not Maven)
+
+Steps for Successful Automation (18:00)
+✔ Every action must be explicitly written in code
+✔ Example: Clicking a button at the bottom of a page
+
+Step 1: Scroll down
+
+Step 2: Locate button
+
+Step 3: Click button
+
+Defect Prioritization in Testing (25:00)
+✔ Defects are prioritized based on severity:
+
+P1 (Critical) → Must be fixed immediately
+
+P2 (High) → Workaround available, fix soon
+
+P3 (Low) → Minor issue, fix in later release
+
+✅ Defined by Product Owner during Requirements Phase
+
+WebDriverManager Advanced Options (29:00)
+✔ Basic setup:
+
+
+WebDriverManager.chromedriver().setup();
+✔ Additional Options:
+
+
+WebDriverManager.chromedriver()
+    .browserVersion("110.0")  // Specify browser version
+    .cachePath("C:/drivers/") // Set custom download path
+    .linux()                  // Download driver for Linux
+    .mac()                    // Download driver for Mac
+    .setup();
+
+Key Takeaways 🚀
+✅ Use JUnit for testing, not Maven
+✅ Explicitly define every test step for success
+✅ Defects are reported based on severity
+✅ WebDriverManager allows advanced configurations
