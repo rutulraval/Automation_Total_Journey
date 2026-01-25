@@ -1,0 +1,82 @@
+22:00
+=======
+To perform any kind of action via selenium,
+whether it is copy and paste, dragging a product and dropping it to the cart, or pressing a key and releasing it,
+
+we have a classin Selenium called Actions.
+
+for drag and drop: dragAndDrop() method
+
+for right-click: contextClick() method
+
+IMPORTANT INTERVIEW QUESTION
+===========================
+HOW DO YOU RIGHT-CLICK WITH SELENIUM ?
+- contextClick() method of Actions class
+
+What is difference between Action and Actions?
+- Action is an interface, Actions is a class.
+
+35:00
+---------
+3 constructors for Actions object creation.
+
+Depending on the resources we have we can choose the constructor type
+
+
+44:00
+========
+
+Using the actions class we can perform some user-performed gestures like ClickAndHold, moveToElement, drop with builder patterns which gives a CompositeAction containing all actions specified by the method calls.
+
+
+47:00
+=-========
+In frontend with javascript we can perform some method on an event,
+- focusReceived
+- focusLost
+- keyDown
+- keyReleased
+
+And on occurrence of some event we can perform some action
+
+
+sendKeys: Key is pressed just one time
+keyDown: Key is pressed until it is released with keyUp
+keyUp: The Key which was pressed down can be released.
+
+
+Similar other methods are also available for mouse related actions
+
+clickAndHold
+moveToElement
+DragAndDrop
+dragAndDropBy
+
+
+
+Homework 01-47-00
+=====================
+"AFGHANISTAN"
+
+Count how many  times each letter has appeared in the word ?
+
+(Count frequency)
+- Which data structure will you use ?
+ (List, set or map)
+
+We will use MAP
+Key: letter as Character, Value: frequency as Integer  (Because Map can only contain objects as Key and Value)
+
+- Which alphabet appears most times ?
+
+String ch = "AFGHANISTAN"
+Map<Character, Integer> m = new HashMap()<>;
+
+Loop over that array of characters to populate our map
+for(Char c: ch)
+{
+	if(c is not in map keys){
+	 add c in key, increase 1 in its value
+	}else{ increase 1 in c's value}
+}

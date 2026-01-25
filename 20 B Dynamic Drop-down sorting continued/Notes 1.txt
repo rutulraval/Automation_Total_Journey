@@ -1,0 +1,141 @@
+04:00
+---------
+If we use Selenium we use driver object to locate elements with methods like findElement/findElements
+
+Whereas in javascript we don't user driver object. We use evaluate() method.
+IMPORTANT INTERVIEW QUESTION
+
+09:00
+--------------
+JavaScript is browser friendly language, and it works in some cases where we won't be normally able to user Selenium code, due to some pop-up or some transparent image. In those cases, it is better to use JavaScript to interact with web-pages.
+
+x-path in javascript
+-------------------
+jse.executeScript("document.getElementById(\"fromCity\")");
+
+
+document.evaluate() is equivalent to xpath of selenium.
+
+
+document.evaluate(xpathExpression, contextNode, null,XPathResult.any_type, null)
+
+contextNode: is where are we trying to find the element> We can pass "document" here
+XPathResult.any_type: instead of any_type there are multiple possible options.
+
+
+
+document.evaluate(xpathExpression, contextNode, null,XPathResult.any_type, null).singleNodeValue will give you an element related to that path and context.
+
+
+
+Document: evaluate() method
+Baseline Widely available
+The evaluate() method of the Document interface selects elements based on the XPath expression given in parameters.
+
+XPath expressions can be evaluated on both HTML and XML documents.
+
+Syntax
+-----------------
+evaluate(xpathExpression, contextNode, namespaceResolver, resultType, result)
+
+Parameters
+-----------------
+xpathExpression
+A string representing the xpath to be evaluated.
+
+contextNode
+The context node for the query. It's common to pass document as the context node.
+
+namespaceResolver
+A function that will be passed any namespace prefixes and should return a string representing the namespace URI associated with that prefix. It will be used to resolve prefixes within the xpath itself, so that they can be matched with the document. The value null is common for HTML documents or when no namespace prefixes are used.
+
+resultType
+An integer that corresponds to the type of result XPathResult to return. The following values are possible:
+
+ANY_TYPE (0)
+Whatever type naturally results from the given expression.
+
+NUMBER_TYPE (1)
+A result set containing a single number. Useful, for example, in an xpath expression using the count() function.
+
+STRING_TYPE (2)
+A result set containing a single string.
+
+BOOLEAN_TYPE (3)
+A result set containing a single boolean value. Useful, for example, an xpath expression using the not() function.
+
+UNORDERED_NODE_ITERATOR_TYPE (4)
+A result set containing all the nodes matching the expression. The nodes in the result set are not necessarily in the same order they appear in the document.
+
+Note: Results of this type contain references to nodes in the document. Modifying a node will invalidate the iterator. After modifying a node, attempting to iterate through the results will result in an error.
+
+ORDERED_NODE_ITERATOR_TYPE (5)
+A result set containing all the nodes matching the expression. The nodes in the result set are in the same order they appear in the document.
+
+Note: Results of this type contain references to nodes in the document. Modifying a node will invalidate the iterator. After modifying a node, attempting to iterate through the results will result in an error.
+
+UNORDERED_NODE_SNAPSHOT_TYPE (6)
+A result set containing snapshots of all the nodes matching the expression. The nodes in the result set are not necessarily in the same order they appear in the document.
+
+Note: Results of this type are snapshots, which are essentially lists of matched nodes. You can make changes to the document by altering snapshot nodes. Modifying the document doesn't invalidate the snapshot; however, if the document is changed, the snapshot may not correspond to the current state of the document, since nodes may have moved, been changed, added, or removed.
+
+ORDERED_NODE_SNAPSHOT_TYPE (7)
+A result set containing snapshots of all the nodes matching the expression. The nodes in the result set are in the same order they appear in the document.
+
+Note: Results of this type are snapshots, which are essentially lists of matched nodes. You can make changes to the document by altering snapshot nodes. Modifying the document doesn't invalidate the snapshot; however, if the document is changed, the snapshot may not correspond to the current state of the document, since nodes may have moved, been changed, added, or removed.
+
+ANY_UNORDERED_NODE_TYPE (8)
+A result set containing any single node that matches the expression. The node is not necessarily the first node in the document that matches the expression.
+
+FIRST_ORDERED_NODE_TYPE (9)
+A result set containing the first node in the document that matches the expression.
+
+result
+An existing XPathResult to use for the results. If set to null the method will create and return a new XPathResult.
+
+Return value
+An XPathResult linking to the selected nodes. If result was null, it is a new object, if not, it is the same object as the one passed as the result parameter.
+
+
+
+40:00
+----------
+Homework
+
+Open orangehrm.com
+select on free 30 deays trial
+
+
+
+
+IMPORTANT INTERVIEW QUESTION  46:00
+
+Sorting of elements in drop-down
+--------------------------------------------
+Get all the options of that drop-down in a list with Select class's getOptions() method.
+
+Make 2 new list objects with the original values of that drop-down.
+
+With Collections.sort() method, sort one of the List.
+
+Then compare(assert) with unsorted list.  
+NOTE: If the list is of not naturally comparable objects, use the overloaded version of sort() method which also accepts a Comparator object as 2nd argument.
+
+Like this  (Here we are using Anonymous Inner class to create an object of Comparator interface  And overriding compare() method which is must to implement custom sorting logic for any custom classes which are not naturally comparable.)
+         Collections.sort(unsortedListObject, new Comparator<Employee>(){
+									@Override
+									public int compare(Employee e1, Employee e2){
+										int k = e1.getName().compareTo(e2.getName());
+										return k;					
+											}
+									}
+
+
+01;26;00
+---------
+Dynamic dropdown
+
+
+Like on any travel website, when you type some partial text for a city's name, the drop-down dynamically appears to show suggestions.
+
+This has to be handled in a separate matter.

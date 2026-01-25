@@ -1,0 +1,47 @@
+01-29-00
+-----------
+
+Dropdown in HTML is represented by <select>
+-whatever values we can see under that dropdown are represented by visibleText attribute
+-Like checked attribute for checkbox and radio-button, <select> has "selected" attribute.
+
+Methods to locate
+------------------
+
+selectByVisibleText()
+selectByValue
+selectByIndex
+
+IMPORTANT INTERVIEW QUESTION
+===========================
+How do you handle dropdown in Selenium ?
+========================================
+Selenium API gives us Select class
+
+Its constructor takes a webelement as an argument.
+
+Select dropDown = new Select(element);
+
+and using the object of Select class, we can invoke methods like selectByVisibleText, selectByValue, selectByIndex.
+
+
+01-40-00
+=========
+There are some Select tags where we can select multiple options as well, and in those cases we can access methods of Select class such as getAllSelectedOptions, deselectAll() etc.
+
+
+
+getOptions() method will return all possible options from given drop-down in a List.
+
+
+
+01-54-00
+=========
+Homework
+Open jobserve.com
+In search box: selenium and sponsorship
+Distance: within 75 miles
+Posted: within 4 days
+Job Type: Contract
+click search button
+And locate top line and use assert with selenium,sponsorship and within 75 miles

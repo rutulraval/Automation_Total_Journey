@@ -1,0 +1,150 @@
+Video 21
+wait and Datepicker
+=========================
+
+
+05:00
+=========
+
+What are you going to test in a datepicker?
+- Logically dates of past should be disabled by default. And current date should appear as selected by default.
+
+
+
+1. Open the website
+2. select/click DatePicker
+3. Get month and year
+4. Compare with actual month and year(desired date) which means keep clicking next/previous page depending on your desired date
+5. Select the date and click
+
+
+April Dates:
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/div/div/div/child::div
+
+May Dates:
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[2]/div/div/div/div/child::div
+
+June Dates:
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[3]/div/div/div/div/child::div
+
+July Dates:
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[4]/div/div/div/div/child::div
+
+August Dates:
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[5]/div/div/div/div/child::div
+
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[7]/div/div/div/div/child::div/child::div[text()="1"]
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[7]/div/div/div/div/child::div[text()='20']
+
+//*[@id="main-container"]/div/div[1]/div[3]/div[2]/div[4]/div/div[2]/div[2]/div[3]/div/div/div[7]/div/div/div/div/child::div[text()='29'
+                + monthIndex +
+                "]/div/div/div/div/child::div[text()='" + desiredDay + "']
+
+
+
+01-06-00
+===========
+implicit wait --> At driver level, for all elements of the DOM
+explicit wait --> At webelement level
+fluent wait
+
+Why do we need wait ?
+- Before we interact with webpage and elements, we must let them render on the webpage. So that's why we need to wait.
+
+IMPLICIT WAIT
+-===============-
+TAKE YOUR TIME
+
+driver.manage().timeouts().implicitylyWait(10,TimeUnit.SECONDS);
+
+It means, we are telling Selenium to wait for given amount of Time and then try to execute next set of code.
+
+Note:
+======
+Pressing Enter key in terms of Selenium is:
+sendKeys(Keys.RETURN)
+
+
+01:21:00
+---------
+For Google search
+if we type something in text-box, the Search button will be hidden by some suggestion text, so with the help of javascriptexecutor locate that search button after entering the required text in search box and click it.
+
+
+EXPLICIT WAIT
+------------
+-1:30:00
+
+We can tell webdriver to wait using static methods of class ExpectedConditions and wait for a certain element to be in a particular state. And that wait will be for a specified amount of time for that particular element only, not for entire DOM. If that element is not in the desired state within that time limit, we may get TimeOutException.
+
+There are various methods based on desired outcomes related to webelements, we can use those static methods to make the webdriver wait explicitly for those conditions to happen.
+
+First, we have to make an object of WebDriverWait
+
+WebDriverWait wait = new WebDriverWait(driver, 10);
+
+then, we go for our WebElement
+
+WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("abcd")));
+
+
+
+IMPORTANT INTERVIEW QUESTION
+--=========================--
+
+Diff. between IMPLICIT WAIT and EXPLICIT WAIT ?
+- implicit wait is for entire DOM and All elements, Explicit wait is for particular element only.
+
+01:43:00
+===========
+We can generalize this explicit wait mechanism by defining a static method which can take required time , By locator and WebDriver object as arguments and return WebElement as per custom wait time requirement.
+
+public static getWebElementWithExplicitWait(WebDriver driver, int timeout, By locator){
+
+//Here only we write generic code for WebDriverWait
+WebDriverWait wait = new WebDriverWait(driver, timeout);
+
+//And with arguments passed to this method and this wait object we find required element
+WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+//in above line we can use any static method that we want
+return element;
+}
+
+
+
+
+01:44:00
+==============
+FluentWait
+===================
+
+It implements Wait interface, it is specialized version of Explicit Wait
+
+It provides extra functionality.
+Maximum amount of time to wait for a condition , as well as the frequency with which to check the condition.
+
+
+
+
+Hierarchy of Wait interface
+-------------------------------
+
+Wait(interface) 
+  |
+  |
+FluentWait(Class)
+  |
+  |
+WebDriverWait(Class) used for Explicit wait execution
+
+
+01:58:00
+=--=--=--=--=
+
+Implicit wait and Thread.sleep
+=============================
+
+Let's say Implicit wait has 30 seconds as time unit, but if the element is available within 5 seconds, execution will be resumed for further code. 
+
+But, in case of Thread.sleep(5000), even if the elements are available within less time, the wait time will be maintained and no further execution will be done until that time limit has finished.
+

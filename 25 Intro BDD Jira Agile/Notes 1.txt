@@ -1,0 +1,95 @@
+BDD
+=========
+
+A product owner gives us requirements and it tells us that our app should have this feature in a given scenario and it should behave in a certain way.
+
+All these instructions are in plain and simple English, in a layman's term.
+
+FORMAT OF REQUIREMENTS SHOULD BE : 
+---------------------------
+Given....when....then
+
+
+(Here "then" represents acceptance criteria)
+
+Now, Product Owner should ideally give those requirements to a business analyst.
+BA will understand those requirements, and prepare an EPIC, which eventually will be divided into Features.
+
+-A Feature will be divided into user stories.
+(User stories are well defined criteria 
+ in the format: Given....when....then)
+  If all the acceptance criteria are fulfilled, then a particular User Story is called finished.
+
+
+So, crux of the flow is:
+
+EPIC--->FEATURE-->USER STORIES
+
+And this is called Behaviour Driven Development in Agile environment.
+
+
+
+
+
+
+
+Tools used for implementing BDD
+---------------------------------
+Cucumber: (Java)
+JBehave: (Java)
+NBehave
+SpecFlow
+
+
+BDD Tool which has one language in common is Gherkin.
+
+
+
+
+
+Backlog:
+----------
+When all USER STORIES(requirements), FEATURES are identified by a BA or Product Owner, are stored in "Backlog" in JIRA or Confluence.(These tools are developed by Atlassian)
+
+
+CEREMONY
+----------
+Backlog grooming is a ceremony in Agile, where all team members sit together and discuss what all details our User Story/Feature should have.
+
+
+
+Pulling story from BACKLOG to Current Sprint
+=============================================
+Product Owner will decide based on priority whether a certain story should be developed/worked upon in current Sprint or not.
+
+
+JIRA is a licensed product.
+It is used to document all project related events and maintain history.
+
+
+
+50:00
+--------
+All the technical details can't be mentioned on JIRA, it is not practical.
+
+For technical details of any project/feature/user story are stored on CONFLUENCE.
+
+
+AGILE is an approach of Software Development Life Cycle.
+
+Both BDD and TDD can be handled in AGILE way.
+
+
+SPECIAL NOTE WHILE RUNNING CUCUMBER TEST
+=========================================
+Sometimes, before running the test for Cucumber, we might face problems like our tests are skipped, there could be multiple reasons like
+- Wrong Glue path, which can be set from "Edit Configuration", 
+- Proper build wasn't done, so we must run the below command first, and then run our Scenario.
+
+
+
+
+
+
+
+

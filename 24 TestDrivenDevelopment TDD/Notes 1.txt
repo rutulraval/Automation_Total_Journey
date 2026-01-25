@@ -1,0 +1,197 @@
+03:00
+Paired Programming – What is it?
+
+2 people work together:
+
+One gives instructions (called the "navigator")
+
+Other writes code (called the "driver")
+
+On next task, they switch roles
+
+Goal: collaborate efficiently and share understanding of the code
+
+06:00
+TDD: Test Driven Development
+BDD: Behavior Driven Development
+
+What is TDD?
+Test Driven Development = Write tests before writing business logic.
+
+🔍 Example Scenario: Library System
+Scenario 1: Searching a Book
+
+
+As a librarian, I want to search for books in my library,
+so that I can answer queries from members.
+✔ Acceptance Criteria:
+→ A method returns collection of books that match a given book name.
+
+Scenario 2: Borrow a Book
+
+
+As a librarian, I want members to borrow books and see which books are borrowed,
+so that I can lend books and keep track of them.
+✔ Acceptance Criteria:
+→ A method returns list of books borrowed by a member.
+
+🚦TDD Flow:
+Write a bare minimum test
+
+Run it → It should fail initially
+
+Make it pass with hard-coded logic
+
+Gradually evolve and refactor
+→ Remove hard-coded parts
+→ Make logic more generic
+
+TDD is not about testing later — it's about designing your code based on the test cases you define upfront.
+
+
+06:00
+TDD: Test Driven Development
+BDD: Behaviour Driven Development
+
+What is TDD?
+Test Driven Development = Write tests before writing business logic.
+
+Detailed TDD Flow:
+TDD follows a strict Red–Green–Refactor cycle:
+
+✅ 1. RED Phase:
+Write a test case that fails initially because the functionality is not yet implemented.
+
+This helps define requirements clearly and ensures you're not writing unnecessary code.
+
+🛠️ Example Frameworks:
+
+JUnit (Java)
+
+TestNG (Java)
+
+PyTest (Python)
+
+Jest (JavaScript/React)
+
+RSpec (Ruby)
+
+✅ 2. GREEN Phase:
+Write the bare minimum code to make the test pass.
+
+Even if logic is hardcoded, it’s okay — the goal is functionality.
+
+🌍 Industry Tip:
+Keep your functions pure, avoid database/file/network dependencies at this stage. Use mocking for external systems using:
+
+Mockito (Java)
+
+Sinon (JavaScript)
+
+unittest.mock (Python)
+
+✅ 3. REFACTOR Phase:
+Clean the code.
+
+Eliminate hardcoding.
+
+Refactor for readability, reusability, and maintainability.
+
+📌 Follow SOLID principles during refactoring:
+
+S: Single Responsibility
+
+O: Open-Closed
+
+L: Liskov Substitution
+
+I: Interface Segregation
+
+D: Dependency Inversion
+
+🔁 This Cycle Repeats for Each Feature or Enhancement
+🧠 Benefits of TDD (From Industry Usage):
+🔍 Early detection of bugs
+
+🔒 Strong test coverage from day 1
+
+⛑️ Refactoring becomes safer
+
+📦 Promotes modular, clean, and reusable code
+
+⚡ Faster onboarding for new developers
+
+🚀 How TDD is Practiced in Industry:
+✅ 1. CI/CD Integration
+Test suites are integrated with CI/CD pipelines using:
+
+Jenkins
+
+GitHub Actions
+
+GitLab CI
+
+CircleCI
+
+Every code push:
+
+Runs all tests
+
+Blocks merging if tests fail
+
+✅ 2. Coverage Tools
+To ensure you're not skipping testing critical paths:
+
+JaCoCo (Java)
+
+Istanbul (JS)
+
+Coverage.py (Python)
+
+SonarQube for code quality + coverage
+
+Industry often mandates minimum test coverage like 80%+.
+
+✅ 3. Test Pyramids
+Teams follow a Test Pyramid strategy:
+
+
+         UI Tests (slow)
+        Integration Tests
+       Unit Tests (fastest, most)
+Unit tests (TDD focus) are the most in number
+
+Integration/UI tests are layered above
+
+✅ 4. Mocking and Stubbing Best Practices
+Use mocks/stubs for APIs, DB calls, and external systems to isolate logic
+
+Helps avoid flakiness and speeds up tests
+
+✅ 5. Pairing TDD with Clean Architecture
+Modern projects often combine TDD with:
+
+Clean Architecture
+
+Hexagonal/Ports & Adapters
+
+Onion Architecture
+
+This makes code testable and modular.
+
+📚 Real-world Example (Using JUnit + Mockito):
+
+@Test
+public void shouldReturnBookWhenSearchedByName() {
+    LibraryService library = new LibraryService();
+    Book expected = new Book("Harry Potter");
+    library.addBook(expected);
+
+    Book result = library.searchByName("Harry Potter");
+
+    assertEquals(expected, result);
+}
+🚦 This test is written before searchByName() is implemented.
+
+💬 Analogy Reminder:
+Write the test ➡️ fail it ➡️ make it pass ➡️ clean it up ➡️ repeat.

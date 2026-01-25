@@ -1,0 +1,44 @@
+05:00
+--------
+Upto 4 minutes discussion of Actions class and its methods related to mouse movement. Special mention about Hovering of mouse, which is represented by the method "moveToElement(WebElement element)"
+
+
+21:00
+===========
+Last lecture we had an assignment for finding out which character appeared most number of times in the given word, now this time we need to find out which word from a paragraph appears most times
+
+
+
+
+
+We all want to earn in six figures but when it comes to putting efforts we start moaning when teacher asks to put more than Six hours every day. We always tend to dream but only those succeed who dare to stretch beyond their capabilities with no if and but convert their dream to goal. Dreams are not those which you get when you sleep but dreams are those which don't let you sleep. So set all personal commitments, festivals, house warming ceremonies, bay shower, Holi, Diwali, Ramzaan side and stay focused. We will succeed only if your efforts are more than our excuses.
+
+Don't be afraid of failures. All of you are incredible if you have reached so far to read this paragraph.
+
+
+tasks
+--------
+- count the number of words in the paragraph
+- count the number of words and its frequency
+- find out the word Eureka, if its not in there throw a custom exception(runtime) named NoSuchWordNotFoundException
+(Hint: use splitting of String )
+- Find out the word/s which have appeared more than once.(Make it case insensitive)
+
+
+
+45:00 Concept of tool-tip
+-========================-
+
+53:00 how do we verify if the tool-tip is appearing or not if we hover over some element ?
+
+We need to learn how to enter in debug mode in the browser first, we can do it by pressing f8.
+
+It will freeze execution and will let us execute step by step.
+
+Sometimes, with react and angular frameworks elements such as tool-tips may not even exist until some particular event/action occurs.
+
+In those cases it becomes hard to locate such elements.
+
+01-13-00
+-------
+done with tool tip demo

@@ -1,0 +1,636 @@
+🔍 Selenium IDE Tutorial Summary
+Source: Simplilearn video tutorial
+Topic: Using Selenium IDE for automation scripting
+
+📌 Video Overview
+Introduction to Selenium & where IDE fits in
+
+Overview of the new Selenium IDE version
+
+Record & Replay functionality
+
+IDE interface components
+
+Commonly used commands
+
+Key features of the new IDE
+
+Limitations of Selenium IDE
+
+💡 What is Selenium?
+Selenium = Open-source tool for automated testing of web applications
+
+Supports multiple browsers
+
+Part of a suite including:
+
+Selenium RC
+
+Selenium WebDriver
+
+Selenium Grid
+
+Selenium IDE (focus of this video)
+
+💡 What is Selenium IDE?
+Originally launched in 2006 as a Firefox extension
+
+Allows Record & Replay of test steps
+
+No programming knowledge needed
+
+Best used for prototyping and demos, not complex automation
+
+Can export scripts to:
+
+WebDriver
+
+JUnit
+
+Ruby
+
+JavaScript, etc.
+
+🚀 New Selenium IDE (Post-2017 Updates)
+Revamped by Applitools under Apache 2.0 license
+
+Supports both Chrome & Firefox (cross-browser)
+
+Downloadable as a browser extension
+
+Installation:
+
+Chrome: Add extension from Chrome Web Store
+
+Firefox: Similar process, already installed for demo
+
+🧩 Features of the New Selenium IDE
+Improved Locator Strategy
+
+Uses multiple locators (e.g., name, CSS, XPath)
+
+Helps increase test robustness (fallback locators)
+
+Parallel Test Execution
+
+New feature; wasn't supported in the old IDE
+
+Control Flow Commands
+
+Support for if-else, while, forEach, switch-case
+
+Previously required a plugin
+
+Automatic Waits
+
+Handles page load waits automatically
+
+Prevents test failures due to race conditions
+
+Set Execution Speed
+
+Option to slow down or speed up execution
+
+Controlled via clock icon in toolbar
+
+Embedded JavaScript
+
+Use execute script to run JS directly
+
+Example: Scroll the page using window.scrollBy
+
+Debugger and Breakpoints
+
+Step-by-step execution supported
+
+Add/remove breakpoints
+
+Pause on Exception feature
+
+CI/CD Integration
+
+Scripts can be executed via command line
+
+Can integrate with Jenkins, Maven, etc.
+
+⚙️ Working Principle of Selenium IDE
+Recording: Captures user interactions
+
+Playback: Runs recorded steps to verify/test
+
+Saving: Scripts can be saved as:
+
+IDE projects
+
+Exported formats (JS, WebDriver, Ruby, etc.)
+
+🖥️ Components of Selenium IDE Interface
+Menu Bar
+
+Create, open, save projects
+
+Toolbar
+
+Run all / current test
+
+Step through tests
+
+Record / Stop Recording
+
+Debug, Pause, Breakpoints
+
+Test Script Panel
+
+Displays steps (e.g., open, type, click)
+
+Can insert JS or control logic directly
+
+📉 Limitations of Selenium IDE
+Not suited for complex automation
+
+Limited flexibility compared to WebDriver
+
+Mostly for prototyping or quick demos
+
+
+
+
+
+
+
+
+after 15:00 to 30:00
+
+🧠 Key Concepts Covered in Selenium IDE
+1. Address Bar
+Where you enter the URL of the site you want to test.
+
+Maintains a history of tested URLs.
+
+2. Test Script Editor Box
+This is where all the recorded or manually added commands are visible.
+
+It includes:
+
+Command – The Selenium action (e.g., click, type, sendKeys, etc.)
+
+Target – The web element locator (CSS, XPath, etc.)
+
+Value – Optional, for actions like typing a value
+
+Comment – Optional description of the command
+
+3. Test Case Pane
+Lists all your test cases.
+
+You can create test suites and group test cases under them.
+
+Shows the currently executing test.
+
+4. Test Log & Reference
+Test Log – Real-time log of execution, with pass/fail status
+
+Reference – Shows command documentation (very handy!)
+
+🛠️ Recording a Test Case (Amazon Example)
+Launch Selenium IDE and create a new project.
+
+Enter the full URL (https://amazon.in).
+
+Click "Record."
+
+Perform actions (search for iPhone, click "Best Sellers", assert page title).
+
+Stop recording.
+
+Commands recorded: open, setWindowSize, type, click, assertTitle, etc.
+
+You also learned how to:
+
+Comment out (disable) commands.
+
+Adjust execution speed.
+
+Manually add commands (like click on cart).
+
+Re-record or add steps in the middle.
+
+Use echo to print messages to the log.
+
+Use Play from Here to execute from a specific point.
+
+📤 Saving and Exporting
+Project files are saved with .side extension.
+
+You can export tests as:
+
+Java JUnit
+
+JavaScript
+
+Python
+
+⚙️ Command Types in Selenium IDE
+✅ Action Commands
+Perform actions on the web app.
+
+Examples: click, type, sendKeys, open, select, doubleClick
+
+📦 Accessor Commands
+Extract values/state from the app and store them in variables.
+
+Examples: store, storeTitle, storeText, storeValue
+
+🔎 Assertion Commands
+Check if the actual output matches the expected.
+
+Examples: assertTitle, assertText, verifyElementPresent
+
+🧪 Bonus Features
+echo command: Prints a message to the log.
+
+store commands: Save dynamic values to variables (great for validations).
+
+Conditional logic: If-Else blocks are available (light scripting).
+
+Execute JavaScript: Use executeScript.
+
+
+
+after 30:00 to 45:00
+===================================================
+✅ Key Features of Selenium IDE
+🔍 1. Accessor Commands
+Accessor commands are used to extract values or data from the webpage and store them in variables for later use.
+
+storeTitle – Captures the title of the current page.
+
+plaintext
+Copy
+Edit
+Command: storeTitle
+Target: 
+Value: varTitle
+storeText – Retrieves the visible text from a web element.
+
+plaintext
+Copy
+Edit
+Command: storeText
+Target: //elementLocator
+Value: varCartText
+storeValue – Retrieves the value attribute of an element, usually input fields or buttons.
+
+plaintext
+Copy
+Edit
+Command: storeValue
+Target: //input[@type='submit']
+Value: varBtnValue
+store – Stores any static text directly.
+
+plaintext
+Copy
+Edit
+Command: store
+Target: All store commands demo
+Value: varString
+echo – Prints variable content to the log.
+
+plaintext
+Copy
+Edit
+Command: echo
+Target: ${varTitle}
+✅ 2. Assertions
+Assertions are validations to ensure the expected value matches the actual value from the application.
+
+💥 assert (Hard Assert)
+Stops execution immediately on failure.
+
+Use when the test cannot proceed if the validation fails.
+
+🔄 verify (Soft Assert)
+Logs the failure but continues test execution.
+
+Useful for validations that don't affect subsequent steps.
+
+🕒 waitFor
+Waits until a specific condition (like visibility or existence) is met.
+
+If the condition is not met within the timeout, it logs a failure but continues execution.
+
+Example of waitForElementVisible:
+plaintext
+Copy
+Edit
+Command: waitForElementVisible
+Target: //elementLocator
+Value: 10000 (in milliseconds)
+🛠️ Other Selenium IDE Actions Demonstrated
+Selecting elements using the "Select Target" tool.
+
+Using variables with ${} to access stored values.
+
+Inspecting elements via browser dev tools to find attributes (like value).
+
+Deleting unnecessary recorded steps to clean up the test.
+
+Demonstrating failure scenarios and how to debug/fix them.
+
+💡 Pro Tips
+Always check if the element has a value attribute before using storeValue.
+
+Use echo liberally during debugging to print variable values.
+
+When using waitFor, make sure the assert comes after the wait and not after closing the browser.
+
+Hard asserts (assert) are good for critical validations; soft asserts (verify) are better for non-blocking checks.
+
+
+
+
+
+
+after 45:00 to 59:00
+===================================================
+
+🔁 Feature 1: Reusability of Test Scripts
+✅ Problem:
+Repeatedly recreating common actions like login in every test case is inefficient.
+
+💡 Solution:
+Create modular test cases (e.g., login test) that can be reused.
+
+Use variables (like ${username} and ${password}) in place of hard-coded values.
+
+Set values using the store command in calling tests.
+
+Use the run command to call one test case (e.g., login test) from another.
+
+🧪 Example Structure:
+Reusable Login Test:
+
+Open login page
+
+Enter ${username}, ${password}
+
+Click "Login"
+
+Assert a text like "Failed login"
+
+Caller Test (e.g., invalid credential):
+
+store | user1 | username
+
+store | pwd1 | password
+
+run | login test
+
+Data-Driven Testing:
+
+Easily test different credentials (valid/invalid) by changing the stored values.
+
+🐞 Feature 2: Debugger in Selenium IDE
+🛠 Debugging Options Available:
+1. Step Execution (Step Over Current Command)
+Runs one command at a time.
+
+Useful to pinpoint exactly where a test fails.
+
+2. Breakpoints
+Click on a command or use right-click → Toggle Breakpoint.
+
+During execution, Selenium pauses at breakpoints.
+
+You can then:
+
+Step through commands from that point
+
+Or run the remaining test commands
+
+3. Disabling Breakpoints
+Useful when debugging temporarily but you don’t want to delete breakpoints.
+
+Use the Disable Breakpoints toggle.
+
+Breakpoints are ignored for that run.
+
+🧠 Key Takeaways:
+Modular test design helps reduce redundancy and increase efficiency.
+
+Parameterizing inputs makes test scripts dynamic and reusable.
+
+Debug tools like step execution and breakpoints help troubleshoot and fine-tune your scripts.
+
+
+
+
+
+
+after 1:00:00 to 1:15:00
+===================================================
+
+
+...active option from the dropdown, and then ended the if block successfully. 🎉
+
+So overall, this walkthrough did a great job showcasing:
+
+🔍 Key Debugging & Control Flow Features in Selenium IDE
+Let’s summarize everything:
+
+✅ Debugging Features:
+Breakpoints:
+
+You can add breakpoints to pause at specific steps.
+
+You can disable or remove them at any time.
+
+Execution pauses when it hits a breakpoint unless it's disabled.
+
+Play to This Point:
+
+Right-click a step and use "Play to this point" to execute up to that command.
+
+Behaves like a temporary breakpoint without needing to manually set it.
+
+Debugger Command:
+
+Insert debugger into the test steps.
+
+Automatically pauses execution when it reaches that line, just like hitting a manual breakpoint.
+
+Pause on Exception:
+
+When enabled, Selenium IDE will pause if any error occurs (e.g., an element is not found).
+
+Helps you fix the issue on the fly, then continue testing without restarting from scratch.
+
+🔁 Control Flow Commands:
+Conditional Branching (if-else):
+
+Example: if gender is "f", click on female and select a dropdown option.
+
+else branch executes if the if condition fails.
+
+Loops:
+
+while/end: Repeats a block while a condition is true.
+
+do/until/end: Runs once, checks condition after.
+
+times/end: Repeats block for a fixed number of iterations.
+
+forEach/end: Loops over items in an array or list.
+
+🧪 Final Test Use Case (Calorie Calculator):
+Opened the site.
+
+Stored gender = f.
+
+Used if to handle selection of female or male options.
+
+Selected appropriate activity level from the dropdown.
+
+
+
+
+
+
+after 01:15:00 to 01:38:00
+===================================================
+
+✅ Control Flow in Selenium IDE
+Selenium IDE now supports programmatic logic, which includes:
+
+1. if-else Conditions
+Checks values like radio button selection (f for female or m for male).
+
+Only the block matching the condition is executed (visual feedback via green/black log lines).
+
+2. While Loop
+You can use variables (like counters).
+
+Executes as long as the condition is true.
+
+Ideal for repeated actions until a condition is met.
+
+3. Do-Repeat If
+Executes the block at least once before checking the condition.
+
+Good for scenarios where the first execution is unconditional.
+
+4. Times Loop
+Straightforward iteration: repeat a set of commands n times.
+
+Useful for simple repeat actions (like clicking a button 5 times).
+
+🧰 Selenium Side Runner (CLI Testing)
+Used for:
+
+Running .side test files from the command line
+
+Running tests parallelly or on different browsers
+
+Integrating with Selenium Grid
+
+🔧 Prerequisites:
+Node.js & npm
+
+Install from https://nodejs.org
+
+Use npm -v to confirm installation
+
+Install Side Runner
+
+bash
+Copy
+Edit
+npm install -g selenium-side-runner
+Check Installation
+
+bash
+Copy
+Edit
+selenium-side-runner --version
+Web Drivers for Browsers
+
+Chrome → chromedriver
+
+Firefox → geckodriver
+
+Edge, Safari, IE → respective drivers
+
+Download from Selenium’s third-party drivers page
+
+Install Chrome Driver Example
+
+bash
+Copy
+Edit
+npm install -g chromedriver
+Run Tests via CLI
+
+bash
+Copy
+Edit
+selenium-side-runner my_test.side
+💡 Tips:
+Always ensure your driver is compatible with your browser version.
+
+You can configure browsers and execution settings using .yml config files.
+
+Side Runner is especially useful for CI/CD pipelines and grid execution.
+
+
+
+
+
+
+Key Concepts:
+Selenium Side Runner Installation:
+
+Selenium Side Runner is used for running test cases created in Selenium IDE from the command line.
+
+It requires browser drivers to be installed and accessible through the command line.
+
+The command for installing the Selenium Side Runner is typically run using npm, and you can check its version after installation.
+
+Running Tests with Selenium Side Runner:
+
+After setting up, you can run the tests by calling the selenium-side-runner followed by the project file name.
+
+If there is no test suite defined, it defaults to running a "default" suite.
+
+Test cases need to be added to a specific test suite in order for them to execute properly.
+
+Test Suite Execution:
+
+Tests are executed sequentially by default.
+
+After running tests, a report is generated showing the status of each test case (pass/fail) and the execution time.
+
+Cross-Browser Testing:
+
+You can run tests on different browsers by specifying the desired browser in the command using -c (capabilities) followed by the browser name (e.g., Chrome or Firefox).
+
+Multiple browsers can be set up using batch scripts to run tests across them.
+
+Parallel Test Execution:
+
+You can configure tests to run in parallel by enabling the "Run in Parallel" option in the settings.
+
+This is useful for reducing execution time, especially for larger test cases. You can see a difference in time taken when running tests sequentially vs. in parallel.
+
+Limitations of Selenium IDE:
+
+No direct export to WebDriver scripts: Selenium IDE doesn't support exporting tests directly to WebDriver scripts (JUnit, Python, etc.) yet.
+
+No Data-Driven Testing: It lacks support for using external data sources like Excel or CSV files for testing.
+
+No Database Testing: There's no capability for testing databases or integrating database interactions.
+
+Limited Reporting: The reporting functionality is basic and lacks advanced features like those found in tools like TestNG.
+
+Conclusion:
+The video concludes with an overview of the key features of Selenium IDE, focusing on test creation, execution via Selenium Side Runner, parallel test execution, and the limitations of the tool. It provides a good introduction for automating tests with the Selenium IDE and running them in a more efficient and flexible way using the command line.
