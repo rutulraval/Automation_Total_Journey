@@ -1,0 +1,40 @@
+Error handling in job title and location:
+==============================================
+if element having xpath //h2[@data-test="search-result-query"] is visible on DOM and also has "Location not found" in it, that is a scenario for wrong/missing location, handle it accordingly.
+if element having xpath //*[@id="search-results-heading"] has "No result found" in it, that is a scenario for Job not Found for the value entered in title element, handle it accordingly.
+
+When I enter invalid search criteria
+Then I should see an appropriate error message
+And no job results should be displayed
+
+Error handling when Backend/API failure (timeout, 500 error)
+================================================================
+
+When the search service is unavailable
+Then I should see a system error message
+And be advised to try again later
+
+================================================================
+
+
+Error handling when Edges of acceptable input and output
+Minimum / maximum number of results
+
+Empty input
+
+Extremely broad input
+================================================================
+When I search with no preferences selected
+Then I should see all available jobs
+Sorted by newest Date Posted
+
+
+When my search returns a large number of jobs
+Then the results should be paginated
+================================================================
+
+Zero Results Handling
+================================================================
+When no jobs match my preferences
+Then I should see a message indicating no results were found
+And I should be able to modify my search criteria
